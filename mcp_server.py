@@ -49,13 +49,10 @@ def edit_document(
 def list_doc() -> list[str]:
     return list(docs.keys())
 
-@mcp.resource(
-    "docs://document/{doc_id}",
-    mime_type="text/plain",
-)
+@mcp.resource("docs://documents/{doc_id}", mime_type="text/plain")
 def fetch_doc(doc_id: str) -> str:
     if doc_id not in docs:
-        raise ValueError(f"Doc with id {doc_id} not found.")
+        raise ValueError(f"Doc with id {doc_id} not found")
     return docs[doc_id]
 
 # TODO: Write a prompt to rewrite a doc in markdown format
